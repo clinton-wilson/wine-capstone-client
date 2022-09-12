@@ -70,12 +70,12 @@ export const Register = () => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
+                    <label htmlFor="bio"> Bio </label>
+                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other users know a little bit about you..." />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="photo"> Photo </label>
-                    <input ref={photo} type="image" name="photo" className="form-control" placeholder="Verify password" required />
+                    <input ref={photo} type="image" name="photo" className="form-control" />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
