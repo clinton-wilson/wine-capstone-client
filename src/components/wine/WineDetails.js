@@ -14,5 +14,11 @@ export const WineDetails = () => {
         Wine()
     }, [])
 
-    return
+    return (
+        <article className="wineDetails">
+            <h2 className="wineDetails__name">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</h2>
+            <div className="wineDetails__photo"><img src={wine.photo} alt={wine.vintner}/></div>
+        </article>
+    )
+
 }

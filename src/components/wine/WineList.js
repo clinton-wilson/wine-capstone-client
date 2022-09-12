@@ -4,7 +4,6 @@ import { getWines } from "../managers/WineManager"
 
 export const WineList = () => {
     const [wines, setWines] = useState([])
-    const navigate = useNavigate()
 
     const Wines = () => {
         getWines()
@@ -19,7 +18,7 @@ export const WineList = () => {
         <article className="wines">
             {
                 wines.map(wine => {
-                    return <Link to={`/winedetails/${wine.id}`}><section key={`wine--${wine.id}`}
+                    return <Link to={`/wines/${wine.id}`}><section key={`wine--${wine.id}`}
                     className="wine">
                         <div className="wine__photo"><img src={wine.photo} alt={wine.vintner}/></div>
                         <div className="wine__name">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</div>
