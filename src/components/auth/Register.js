@@ -75,7 +75,7 @@ export const Register = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="photo"> Photo </label>
-                    <input ref={photo} type="image" name="photo" className="form-control" />
+                    <input ref={photo} type="text" name="photo" className="form-control" />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
