@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { FaEdit, FaTrash } from "react-icons/fa"
+import { Link, useParams } from "react-router-dom"
 import { getSingleRecipe } from "../managers/RecipeManager"
 
 export const RecipeDetails = () => {
@@ -22,6 +23,8 @@ export const RecipeDetails = () => {
             <div className="recipeDetails__instructions">Instructions: {recipe.instructions}</div>
             <div className="recipeDetails__readyInMinutes">Ready in {recipe.ready_in_minutes} minutes</div>
             <div className="recipeDetails__serves">Serves {recipe.serves} people</div>
+            <Link to={`/recipes/edit/${recipe.id}`}><FaEdit/></Link>
+            <a><FaTrash/></a>
         </article>
     )
 }
