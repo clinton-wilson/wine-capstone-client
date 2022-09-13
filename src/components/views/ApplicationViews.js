@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { Login } from "../auth/Login"
 import { Register } from "../auth/Register"
 import { RecipeDetails } from "../recipes/RecipeDetails"
+import { RecipeEdit } from "../recipes/RecipeEdit"
 import { RecipeList } from "../recipes/RecipeList"
 import { WineDetails } from "../wine/WineDetails"
 import { WineList } from "../wine/WineList"
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
                 <Route path="/wines/:wineId" element={<WineDetails />} />
                 <Route path="/recipes" element={<RecipeList />} />
                 <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+                <Route path="/recipes/edit/:recipeId" element={<RecipeEdit />} />
             </Route>
         </Routes>
     </>
