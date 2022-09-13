@@ -15,3 +15,4 @@ export const getSingleRecipe = (recipeId) => {
     })
         .then(response => response.json())
 }
+

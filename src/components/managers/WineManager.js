@@ -15,3 +15,12 @@ export const getSingleWine = (wineId) => {
     })
         .then(response => response.json())
 }
+
+export const getSearch = (search) => {
+    return fetch(`http://localhost:8000/wines?search_term=${search}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+}

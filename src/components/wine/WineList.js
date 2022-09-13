@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getWines } from "../managers/WineManager"
+import { Search } from "../search/Search"
 
 export const WineList = () => {
     const [wines, setWines] = useState([])
@@ -16,6 +17,7 @@ export const WineList = () => {
 
     return (
         <article className="wines">
+            <Search setWines={setWines} wines={Wines}/>
             {
                 wines.map(wine => {
                     return <Link to={`/wines/${wine.id}`}><section key={`wine--${wine.id}`}
