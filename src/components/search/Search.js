@@ -4,32 +4,35 @@ import { getSearch } from "../managers/WineManager"
 
 export const Search = ({ setWines, wines }) => {
     const [searchCriteria, setSearchCriteria] = useState([])
-    const searchedWines = () => {
+    const searchedWines = (e) => {
+        e.preventDefault()
         getSearch(searchCriteria)
             .then(setWines)
     }
-    
+
     return <section className="search">
         <p className="panel-heading">
             Search Wines
         </p>
         <div className="field has-addons">
-            <div className="control">
-                <input
-                    onChange={
-                        (e) => {
-                            setSearchCriteria(e.target.value.toLowerCase())
-                            if (e.target.value === "") {
-                                wines()
+            <form onSubmit={searchedWines}>
+                <div className="control">
+                    <input
+                        onChange={
+                            (e) => {
+                                setSearchCriteria(e.target.value.toLowerCase())
+                                if (e.target.value === "") {
+                                    wines()
+                                }
                             }
                         }
-                    }
 
-                    type="search" placeholder="Search wine"
-                    className="input" />
-            </div>
+                        type="search" placeholder="Search wine"
+                        className="input" />
+                </div>
+            </form>
             <div className="control">
-                <a className="button is-info" onClick={searchedWines} ><FaSearch /></a>
+                <button className="button is-info" type="submit"  ><FaSearch /></button>
             </div>
         </div>
     </section>
