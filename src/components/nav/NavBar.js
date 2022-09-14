@@ -14,11 +14,11 @@ export const NavBar = () => {
                 Navigation link
             </li>
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("wine_token") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("wine_token")
                                 navigate('/login')
                             }}
                         >Logout</button>

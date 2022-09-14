@@ -1,7 +1,7 @@
 export const getRecipes = () => {
     return fetch("http://localhost:8000/recipes", {
         headers: {
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`
         }
     })
         .then(response => response.json())
@@ -10,7 +10,7 @@ export const getRecipes = () => {
 export const getSingleRecipe = (recipeId) => {
     return fetch(`http://localhost:8000/recipes/${recipeId}`, {
         headers: {
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`
         }
     })
         .then(response => response.json())
@@ -20,9 +20,18 @@ export const updateRecipe = (id, recipe) => {
     return fetch(`http://localhost:8000/recipes/${id}`, {
         method: "PUT",
         headers: {
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`,
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(recipe)
+    }).then(getRecipes)
+}
+
+export const deleteRecipe = (recipeId) => {
+    return fetch(`http://localhost:8000/recipes/${recipeId}`, {
+        method: "DELETE",
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('wine_token')}`
+        }
     }).then(getRecipes)
 }

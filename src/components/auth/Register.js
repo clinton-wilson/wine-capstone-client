@@ -30,7 +30,7 @@ export const Register = () => {
             registerUser(newUser)
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
+                        localStorage.setItem("wine_token", res.token, res.admin)
                         navigate("/")
                     }
                 })

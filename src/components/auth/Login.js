@@ -18,8 +18,9 @@ export const Login = () => {
         loginUser(user)
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem("lu_token", res.token)
-                    navigate("/")
+                    localStorage.setItem("wine_token", res.token)
+                    localStorage.setItem("wine_admin", res.admin)
+                    navigate("/wines")
                 }
                 else {
                     invalidDialog.current.showModal()
