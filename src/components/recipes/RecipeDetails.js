@@ -7,6 +7,8 @@ export const RecipeDetails = () => {
     const [recipe, setRecipe] = useState([])
     const { recipeId } = useParams()
     const navigate = useNavigate()
+    const localWineAdmin = localStorage.getItem("wine_admin")
+    const wineUserAdmin = JSON.parse(localWineAdmin)
     const Recipe = () => {
         getSingleRecipe(recipeId)
             .then(setRecipe)
@@ -44,10 +46,16 @@ export const RecipeDetails = () => {
             <div className="recipeDetails__readyInMinutes">Ready in {recipe.ready_in_minutes} minutes</div>
             <div className="recipeDetails__serves">Serves {recipe.serves} people</div>
             <div className="recipeDetails__more_info">More information at <Link to={`${recipe.more_info}`}>{recipe.more_info}</Link></div>
-            <Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>
+            {
+                (wineUserAdmin === true)
+                ? <><Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>
             <span className="icon" onClick={() => {
                 confirmDelete(recipe.id)
-            }}><FaTrash /></span>
+            }}><FaTrash /></span></>
+                : ""
+            }
+            
+
         </article>
     )
 }

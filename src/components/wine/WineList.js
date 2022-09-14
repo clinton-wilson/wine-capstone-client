@@ -5,7 +5,9 @@ import { Search } from "../search/Search"
 
 export const WineList = () => {
     const [wines, setWines] = useState([])
-
+    const navigate = useNavigate()
+    const localWineAdmin = localStorage.getItem("wine_admin")
+    const wineUserAdmin = JSON.parse(localWineAdmin)
     const Wines = () => {
         getWines()
         .then(setWines)
@@ -18,6 +20,12 @@ export const WineList = () => {
     return (
         <article className="wines">
             <Search setWines={setWines} wines={Wines}/>
+            {
+                (wineUserAdmin===true)
+                ? <button onClick={() => navigate('/wine/new')}>Add New Wine</button>
+                : ""
+            }
+            
             {
                 wines.map(wine => {
                     return <Link to={`/wines/${wine.id}`}><section key={`wine--${wine.id}`}
