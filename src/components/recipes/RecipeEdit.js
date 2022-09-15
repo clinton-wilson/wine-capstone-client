@@ -16,7 +16,9 @@ export const RecipeEdit = () => {
 
     useEffect(() => {
         getSingleRecipe(recipeId)
-            .then(data => setEditRecipe(data))
+            .then(data => {
+                data.main_ingredient = data.main_ingredient.id
+                setEditRecipe(data)})
     }, [])
 
     return (
@@ -138,8 +140,8 @@ export const RecipeEdit = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="main_ingredient_id">Main ingredient: </label>
-                    <select name="main_ingredient_id"
+                    <label htmlFor="main_ingredient">Main ingredient: </label>
+                    <select name="main_ingredient"
                     proptype="int"
                     value={parseInt(editRecipe.main_ingredient)}
                     onChange={(e) => {
@@ -168,7 +170,7 @@ export const RecipeEdit = () => {
                     serves: editRecipe.serves,
                     image: editRecipe.image,
                     name: editRecipe.name,
-                    main_ingredient_id: editRecipe.main_ingredient,
+                    main_ingredient: editRecipe.main_ingredient,
                     summary: editRecipe.summary,
                     more_info: editRecipe.more_info
                 }
@@ -176,6 +178,8 @@ export const RecipeEdit = () => {
                 .then(()=> navigate(`/recipes/${recipeId}`))
             }}
             className="btn btn-primary">Save</button>
+            <button type="cancel"
+                onClick={() => navigate(`/recipes`)}>Cancel</button>
         </form>
     )
 }

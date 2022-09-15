@@ -35,3 +35,24 @@ export const createWine = (wine) => {
         body: JSON.stringify(wine)
     }).then(getWines)
 }
+
+
+export const deleteWine = (id) => {
+    return fetch(`http://localhost:8000/wines/${id}`, {
+        method: "DELETE",
+        headers: {
+            'Authorization': `Token ${localStorage.getItem('wine_token')}`
+        }
+    }).then(getWines)
+}
+
+export const updateWine = (id, wine) => {
+    return fetch(`http://localhost:8000/wines/${id}`, {
+        method: "PUT",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(wine)
+    }).then(getWines)
+}

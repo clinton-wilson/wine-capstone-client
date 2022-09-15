@@ -54,7 +54,8 @@ export const RecipeDetails = () => {
             }}><FaTrash /></span></>
                 : ""
             }
-            
+            <button type="cancel"
+                onClick={() => navigate(`/recipes`)}>Back to Recipes</button>
 
         </article>
     )
