@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { FaEdit, FaTrash, FaTrashAlt } from "react-icons/fa"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { deleteRecipe, getSingleRecipe } from "../managers/RecipeManager"
+import { getWines } from "../managers/WineManager"
 import { RecipeDelete } from "./RecipeDelete"
 
 export const RecipeDetails = () => {
     const [recipe, setRecipe] = useState([])
+    const [wines, setWines] = useState([])
     const { recipeId } = useParams()
     const navigate = useNavigate()
     const localWineAdmin = localStorage.getItem("wine_admin")
@@ -15,23 +17,19 @@ export const RecipeDetails = () => {
             .then(setRecipe)
     }
 
+    const Wines = () => {
+        getWines()
+            .then(setWines)
+    }
+
+    useEffect(() => {
+        Wines()
+    }, [])
 
     useEffect(() => {
         Recipe()
     }, [])
 
-    const deleteRecipeEvent = (recipeId) => {
-        deleteRecipe(recipeId)
-            .then(() => {
-                navigate('/recipes')
-            })
-    }
-
-    const confirmDelete = (id) => {
-        if (window.confirm("Do you want to delete this recipe?")) {
-            deleteRecipeEvent(id)
-        }
-    }
 
     return (
         <article className="recipeDetails">
@@ -47,6 +45,17 @@ export const RecipeDetails = () => {
             <div className="recipeDetails__readyInMinutes">Ready in {recipe.ready_in_minutes} minutes</div>
             <div className="recipeDetails__serves">Serves {recipe.serves} people</div>
             <div className="recipeDetails__more_info">More information at <Link to={`${recipe.more_info}`}>{recipe.more_info}</Link></div>
+            <h4>These varietals may pair nicely with this recipe</h4>
+            {
+                wines.map(wine => {
+                    if (wine?.main_ingredient?.id === recipe?.main_ingredient?.id) {
+                        return <>
+                        <Link to={`/wines/varietal/${wine?.varietal?.id}`}><ol>{wine?.varietal?.varietal}</ol></Link></>
+
+                    }
+                })
+            }
+            <br />
             {
                 (wineUserAdmin === true)
                     ? <><Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>

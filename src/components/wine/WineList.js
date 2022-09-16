@@ -10,14 +10,11 @@ export const WineList = () => {
     const navigate = useNavigate()
     const localWineAdmin = localStorage.getItem("wine_admin")
     const wineUserAdmin = JSON.parse(localWineAdmin)
-    const localWineUser = localStorage.getItem("current_wine_user")
-    const currentWineUser = JSON.parse(localWineAdmin)
+    
     const Wines = () => {
         getWines()
             .then(setWines)
     }
-
-
 
     useEffect(() => {
         Wines()

@@ -31,7 +31,7 @@ export const Register = () => {
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("wine_token", res.token, res.admin)
-                        navigate("/")
+                        navigate("/wines")
                     }
                 })
         } else {
@@ -58,7 +58,7 @@ export const Register = () => {
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputUsername">Username</label>
+                    <label htmlFor="inputUsername"> Username </label>
                     <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
                 </fieldset>
                 <fieldset>
