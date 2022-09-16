@@ -56,3 +56,23 @@ export const updateWine = (id, wine) => {
         body: JSON.stringify(wine)
     }).then(getWines)
 }
+
+export const favoriteWine = wineId => {
+    return fetch(`http://localhost:8000/wines/${wineId}/favorite`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
+export const unfavoriteWine = wineId => {
+    return fetch(`http://localhost:8000/wines/${wineId}/unfavorite`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`
+        }
+    })
+        .then(getWines)
+}

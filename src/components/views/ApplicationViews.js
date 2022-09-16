@@ -4,6 +4,7 @@ import { Register } from "../auth/Register"
 import { RecipeDetails } from "../recipes/RecipeDetails"
 import { RecipeEdit } from "../recipes/RecipeEdit"
 import { RecipeList } from "../recipes/RecipeList"
+import { RecipePairings } from "../recipes/RecipePairings"
 import { NewWine } from "../wine/NewWine"
 import { WineDetails } from "../wine/WineDetails"
 import { WineEdit } from "../wine/WineEdit"
@@ -22,6 +23,7 @@ export const ApplicationViews = () => {
                 <Route path="/wines/:wineId" element={<WineDetails />} />
                 <Route path="/wines/new" element={<NewWine />} />
                 <Route path="/wines/edit/:wineId" element={<WineEdit />} />
+                <Route path="/pairings/:wineId" element={<RecipePairings />} />
                 <Route path="/recipes" element={<RecipeList />} />
                 <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
                 <Route path="/recipes/edit/:recipeId" element={<RecipeEdit />} />

@@ -24,7 +24,7 @@ export const WineDetails = () => {
         <article className="wineDetails">
             <h2 className="wineDetails__name">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</h2>
             <div className="wineDetails__photo"><img src={wine.photo} alt={wine.vintner}/></div>
-            <div className="wineDetails__pairings">Pairing main ingredients: <ul><Link to={<RecipePairings/>}><li>{wine?.main_ingredient?.ingredient}</li></Link></ul></div>
+            <div className="wineDetails__pairings">Pairing main ingredients: <ul><Link to={`/pairings/${wine.id}`}><li>{wine?.main_ingredient?.ingredient}</li></Link></ul></div>
             {
                             (wineUserAdmin === true)
                                 ? <><Link to={`/wines/edit/${wine.id}`}><FaEdit /></Link>

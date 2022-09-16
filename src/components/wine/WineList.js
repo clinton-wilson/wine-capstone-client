@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { FaEdit, FaTrash } from "react-icons/fa"
 import { Link, useNavigate } from "react-router-dom"
-import { deleteWine, getWines } from "../managers/WineManager"
+import { deleteWine, favoriteWine, getWines, unfavoriteWine } from "../managers/WineManager"
 import { Search } from "../search/Search"
 import { WineDelete } from "./WineDelete"
 
@@ -10,23 +10,14 @@ export const WineList = () => {
     const navigate = useNavigate()
     const localWineAdmin = localStorage.getItem("wine_admin")
     const wineUserAdmin = JSON.parse(localWineAdmin)
+    const localWineUser = localStorage.getItem("current_wine_user")
+    const currentWineUser = JSON.parse(localWineAdmin)
     const Wines = () => {
         getWines()
             .then(setWines)
     }
 
-    const deleteWineEvent = (id) => {
-        deleteWine(id)
-            .then(() => {
-                navigate('/wines')
-            })
-    }
 
-    const confirmDelete = (id) => {
-        if (window.confirm("Do you want to delete this recipe?")) {
-            deleteWineEvent(id)
-        }
-    }
 
     useEffect(() => {
         Wines()
@@ -42,17 +33,33 @@ export const WineList = () => {
             }
             {
                 wines.map(wine => {
-                    return <Link to={`/wines/${wine.id}`}><section key={`wine--${wine.id}`}
-                        className="wine">
-                        <div className="wine__photo"><img src={wine.photo} alt={wine.vintner} /></div>
-                        <div className="wine__name">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</div>
+                    return <section key={`wine--${wine.id}`}
+                        className="wine"><Link to={`/wines/${wine.id}`}>
+                            <div className="wine__photo"><img src={wine.photo} alt={wine.vintner} /></div>
+                            <div className="wine__name">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</div></Link>
+                        {
+                            wine?.favorited ?
+                                <button className="unfavoriteButton" onClick={() => {
+                                    unfavoriteWine(wine.id)
+                                        .then(() => {
+                                            Wines()
+                                        })
+                                }}>Unfavorite</button>
+                                :
+                                <button className="favoriteButton" onClick={() => {
+                                    favoriteWine(wine.id)
+                                        .then(() => {
+                                            Wines()
+                                        })
+                                }}>Favorite</button>
+                        }
                         {
                             (wineUserAdmin === true)
                                 ? <><Link to={`/wines/edit/${wine.id}`}><FaEdit /></Link>
-                                    <WineDelete wineId = {wine.id}/></>
+                                    <WineDelete wineId={wine.id} /></>
                                 : ""
                         }
-                    </section></Link>
+                    </section>
                 })
             }
         </article>

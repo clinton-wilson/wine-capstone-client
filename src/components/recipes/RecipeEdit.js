@@ -17,7 +17,7 @@ export const RecipeEdit = () => {
     useEffect(() => {
         getSingleRecipe(recipeId)
             .then(data => {
-                data.main_ingredient = data.main_ingredient.id
+                data.main_ingredient = data?.main_ingredient?.id
                 setEditRecipe(data)})
     }, [])
 
