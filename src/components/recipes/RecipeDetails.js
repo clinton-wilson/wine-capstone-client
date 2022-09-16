@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { FaEdit, FaTrash, FaTrashAlt } from "react-icons/fa"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { deleteRecipe, getSingleRecipe } from "../managers/RecipeManager"
+import { RecipeDelete } from "./RecipeDelete"
 
 export const RecipeDetails = () => {
     const [recipe, setRecipe] = useState([])
@@ -48,11 +49,9 @@ export const RecipeDetails = () => {
             <div className="recipeDetails__more_info">More information at <Link to={`${recipe.more_info}`}>{recipe.more_info}</Link></div>
             {
                 (wineUserAdmin === true)
-                ? <><Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>
-            <span className="icon" onClick={() => {
-                confirmDelete(recipe.id)
-            }}><FaTrash /></span></>
-                : ""
+                    ? <><Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>
+                        <RecipeDelete recipeId={recipe.id} /></>
+                    : ""
             }
             <button type="cancel"
                 onClick={() => navigate(`/recipes`)}>Back to Recipes</button>

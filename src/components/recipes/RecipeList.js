@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
+import { FaEdit } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { getRecipes } from "../managers/RecipeManager"
+import { RecipeDelete } from "./RecipeDelete"
 
 export const RecipeList = () => {
     const [recipes, setRecipes] = useState([])
-
+    const localWineAdmin = localStorage.getItem("wine_admin")
+    const wineUserAdmin = JSON.parse(localWineAdmin)
     const Recipes = () => {
         getRecipes()
-        .then(setRecipes)
+            .then(setRecipes)
     }
 
     useEffect(() => {
@@ -20,12 +23,19 @@ export const RecipeList = () => {
         <article className="recipes">
             {
                 randomRecipes.map(recipe => {
-                    return <Link to={`/recipes/${recipe.id}`}>
-                        <section key={`recipe--${recipe.id}`} className="recipe">
-                            <div className="recipe__photo"><img src={recipe.image} alt={recipe.summary}/></div>
+                    return(
+                    <section key={`recipe--${recipe.id}`} className="recipe">
+                        <Link to={`/recipes/${recipe.id}`}>
+                            <div className="recipe__photo"><img src={recipe.image} alt={recipe.summary} /></div>
                             <div className="recipe__name">{recipe.name}</div>
-                        </section>
-                    </Link>
+                        </Link>
+                        {
+                (wineUserAdmin === true)
+                    ? <><Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>
+                        <RecipeDelete recipeId={recipe.id} /></>
+                    : ""
+            }
+                    </section>)
                 })
             }
         </article>
