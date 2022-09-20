@@ -1,0 +1,5 @@
+.search{
+    /* max-height: 2px; */
+    display: flex;
+    flex-direction: row;
+}
