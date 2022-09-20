@@ -4,6 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { getSingleWine } from "../managers/WineManager"
 import { RecipePairings } from "../recipes/RecipePairings"
 import { WineDelete } from "./WineDelete"
+import React from 'react';
+
 
 export const WineDetails = () => {
     const [wine, setWine] = useState([])
@@ -20,20 +22,22 @@ export const WineDetails = () => {
         Wine()
     }, [])
 
-    return (
-        <article className="wineDetails">
-            <h2 className="wineDetails__name">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</h2>
-            <div className="wineDetails__photo"><img src={wine.photo} alt={wine.vintner}/></div>
-            <div className="wineDetails__pairings">Pairing main ingredients: <ul><Link to={`/pairings/${wine.id}`}><li>{wine?.main_ingredient?.ingredient}</li></Link></ul></div>
+    return (<section className="detail_container">
+        <h2 className="title">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</h2>
+        <article className="details">
+            <div className="detail_image"><img src={wine.photo} alt={wine.vintner} /></div>
+            <div className="detail">Pairing main ingredients: <Link to={`/pairings/${wine.id}`}>{wine?.main_ingredient?.ingredient}</Link></div>
+            <div className="detail_icons">
             {
-                            (wineUserAdmin === true)
-                                ? <><Link to={`/wines/edit/${wine.id}`}><FaEdit /></Link>
-                                    <WineDelete wineId = {wine.id}/></>
-                                : ""
-                        }
-                        <button type="cancel"
+                (wineUserAdmin === true)
+                    ? <><Link to={`/wines/edit/${wine.id}`}><FaEdit /></Link>
+                        <WineDelete wineId={wine.id} /></>
+                    : ""
+            }</div>
+            <button type="detail_icon"
                 onClick={() => navigate(`/wines`)}>Back to Wines</button>
         </article>
+    </section>
     )
 
 }

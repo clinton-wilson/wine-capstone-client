@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { FaSearch } from "react-icons/fa"
 import { getSearch } from "../managers/WineManager"
-
+import "./search.css"
 export const Search = ({ setWines, wines }) => {
     const [searchCriteria, setSearchCriteria] = useState([])
     const searchedWines = (e) => {
@@ -11,12 +11,7 @@ export const Search = ({ setWines, wines }) => {
     }
 
     return <section className="search">
-        <p className="panel-heading">
-            Search Wines
-        </p>
-        <div className="field has-addons">
-            <form onSubmit={searchedWines}>
-                <div className="control">
+            <form  onSubmit={searchedWines}>
                     <input
                         onChange={
                             (e) => {
@@ -29,11 +24,9 @@ export const Search = ({ setWines, wines }) => {
 
                         type="search" placeholder="Search wine"
                         className="input" />
-                </div>
             </form>
             <div className="control">
-                <button className="button is-info" type="submit"  ><FaSearch /></button>
+                <button className="search_button" type="submit"  ><FaSearch /></button>
             </div>
-        </div>
     </section>
 }

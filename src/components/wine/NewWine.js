@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { getIngredients } from "../managers/MainIngredientManager"
 import { getVarietals } from "../managers/VarietalManager"
 import { createWine } from "../managers/WineManager"
+import React from 'react';
+
 
 export const NewWine = () => {
     const navigate = useNavigate()
@@ -33,27 +35,27 @@ export const NewWine = () => {
         setWine(newWine)
     }
     return (
-        <form className="wineForm">
-            <h2 className="wineForm__title">Add Wine</h2>
-            <fieldset>
+        <form className="form">
+            <h1 className="title">Add Wine</h1>
+            <fieldset className="field">
                 <div className="form-group">
-                    <label htmlFor="vintner">Vintner: </label>
+                    <label className="label" htmlFor="vintner">Vintner: </label>
                     <input type="text" name="vintner" required autoFocus className="form-control"
                         value={wine.vintner}
                         onChange={changeWineState} />
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset className="field">
                 <div className="form-group">
-                    <label htmlFor="vintage">Vintage: </label>
+                    <label className="label" htmlFor="vintage">Vintage: </label>
                     <input type="number" min="1900" max="2022" name="vintage" className="form-control"
                         value={wine.vintage}
                         onChange={changeWineState} />
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset className="field">
                 <div className="form-group">
-                    <label htmlFor="varietal_id">Varietal: </label>
+                    <label className="label" htmlFor="varietal_id">Varietal: </label>
                     <select name="varietal_id"
                         proptype="int"
                         value={parseInt(wine.varietal_id)}
@@ -67,7 +69,7 @@ export const NewWine = () => {
                     </select>
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset className="field">
                 <div className="form-group">
                     <label htmlFor="photo">Photo: </label>
                     <input type="textarea" name="photo" className="form-control"
@@ -75,9 +77,9 @@ export const NewWine = () => {
                         onChange={changeWineState} />
                 </div>
             </fieldset>
-            <fieldset>
+            <fieldset className="field">
                 <div className="form-group">
-                    <label htmlFor="main_ingredient_id">Main Ingredient: </label>
+                    <label className="label" htmlFor="main_ingredient_id">Main Ingredient: </label>
                     <select name="main_ingredient_id"
                         proptype="int"
                         value={parseInt(wine.main_ingredient_id)}

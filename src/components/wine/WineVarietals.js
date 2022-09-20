@@ -3,6 +3,8 @@ import { FaEdit } from "react-icons/fa"
 import { Link, useParams } from "react-router-dom"
 import { favoriteWine, getWines, unfavoriteWine } from "../managers/WineManager"
 import { WineDelete } from "./WineDelete"
+import React from 'react';
+
 
 export const WineVarietals = () => {
     const [wines, setWines] = useState([])

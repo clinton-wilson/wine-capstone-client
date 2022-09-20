@@ -5,20 +5,10 @@ import { deleteWine, getWines } from "../managers/WineManager"
 
 export const WineDelete = ({ wineId }) => {
     const navigate = useNavigate()
-    const [wines, setWines] = useState([])
 
-    const Wines = () => {
-        getWines()
-            .then((data) => {
-                setWines(data)
-            })
-    }
 
     const deleteWineEvent = (id) => {
         deleteWine(id)
-            .then(() => {
-                Wines()
-            })
             .then(() => {
                 navigate('/wines')
             })

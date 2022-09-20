@@ -3,6 +3,8 @@ import { FaRegSave, FaSave, FaStore } from "react-icons/fa"
 import { useNavigate, useParams } from "react-router-dom"
 import { getIngredients } from "../managers/MainIngredientManager"
 import { getSingleRecipe, updateRecipe } from "../managers/RecipeManager"
+import React from 'react';
+
 
 export const RecipeEdit = () => {
     const [mainIngredient, setMainIngredient] = useState([])
@@ -18,12 +20,13 @@ export const RecipeEdit = () => {
         getSingleRecipe(recipeId)
             .then(data => {
                 data.main_ingredient = data?.main_ingredient?.id
-                setEditRecipe(data)})
+                setEditRecipe(data)
+            })
     }, [])
 
-    return (
-        <form className="recipeForm">
-            <h2 className="recipeForm__title">Edit Recipe</h2>
+    return (<section className="form_section">
+        <form className="form">
+            <h2 className="title">Edit Recipe</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Name: </label>
@@ -41,7 +44,7 @@ export const RecipeEdit = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="ingredients">Ingredients: </label>
-                    <input type="textarea" name="ingredients"
+                    <textarea type="textarea" name="ingredients"
                         className="form-control"
                         value={editRecipe.ingredients}
                         onChange={(e) => {
@@ -55,7 +58,7 @@ export const RecipeEdit = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="instructions">Instructions: </label>
-                    <input type="textarea" name="instructions"
+                    <textarea type="textarea" name="instructions"
                         className="form-control"
                         value={editRecipe.instructions}
                         onChange={(e) => {
@@ -70,7 +73,7 @@ export const RecipeEdit = () => {
                 <div className="form-group">
                     <label htmlFor="ready_in_minutes">Ready in </label>
                     <input type="number" name="ready_in_minutes"
-                        className="form-control"
+                        className="field_number"
                         value={editRecipe.ready_in_minutes}
                         onChange={(e) => {
                             const copy = { ...editRecipe }
@@ -85,7 +88,7 @@ export const RecipeEdit = () => {
                 <div className="form-group">
                     <label htmlFor="serves">Serves </label>
                     <input type="number" name="serves"
-                        className="form-control"
+                        className="field_number"
                         value={editRecipe.serves}
                         onChange={(e) => {
                             const copy = { ...editRecipe }
@@ -113,7 +116,7 @@ export const RecipeEdit = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="summary">Summary: </label>
-                    <input type="url" name="summary"
+                    <textarea type="url" name="summary"
                         className="form-control"
                         value={editRecipe.summary}
                         onChange={(e) => {
@@ -142,13 +145,13 @@ export const RecipeEdit = () => {
                 <div className="form-group">
                     <label htmlFor="main_ingredient">Main ingredient: </label>
                     <select name="main_ingredient"
-                    proptype="int"
-                    value={parseInt(editRecipe.main_ingredient)}
-                    onChange={(e) => {
-                        const copy = {...editRecipe}
-                        copy.main_ingredient = e.target.value
-                        setEditRecipe(copy)
-                    }}>
+                        proptype="int"
+                        value={parseInt(editRecipe.main_ingredient)}
+                        onChange={(e) => {
+                            const copy = { ...editRecipe }
+                            copy.main_ingredient = e.target.value
+                            setEditRecipe(copy)
+                        }}>
                         <option value="0">Select Main Ingredient</option>
                         {mainIngredient.map(mi => (
                             <option key={mi.id} value={mi.id}>
@@ -159,27 +162,28 @@ export const RecipeEdit = () => {
                 </div>
             </fieldset>
             <button type="submit"
-            onClick={e => {
-                e.preventDefault()
+                onClick={e => {
+                    e.preventDefault()
 
-                const recipe = {
-                    id: recipeId,
-                    instructions: editRecipe.instructions,
-                    ingredients: editRecipe.ingredients,
-                    ready_in_minutes: editRecipe.ready_in_minutes,
-                    serves: editRecipe.serves,
-                    image: editRecipe.image,
-                    name: editRecipe.name,
-                    main_ingredient: editRecipe.main_ingredient,
-                    summary: editRecipe.summary,
-                    more_info: editRecipe.more_info
-                }
-                updateRecipe(recipeId, recipe)
-                .then(()=> navigate(`/recipes/${recipeId}`))
-            }}
-            className="btn btn-primary">Save</button>
+                    const recipe = {
+                        id: recipeId,
+                        instructions: editRecipe.instructions,
+                        ingredients: editRecipe.ingredients,
+                        ready_in_minutes: editRecipe.ready_in_minutes,
+                        serves: editRecipe.serves,
+                        image: editRecipe.image,
+                        name: editRecipe.name,
+                        main_ingredient: editRecipe.main_ingredient,
+                        summary: editRecipe.summary,
+                        more_info: editRecipe.more_info
+                    }
+                    updateRecipe(recipeId, recipe)
+                        .then(() => navigate(`/recipes/${recipeId}`))
+                }}
+                className="btn btn-primary">Save</button>
             <button type="cancel"
                 onClick={() => navigate(`/recipes`)}>Cancel</button>
         </form>
+    </section>
     )
 }

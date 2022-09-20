@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { getRecipes } from "../managers/RecipeManager"
 import { getSingleWine } from "../managers/WineManager"
+import React from 'react';
+
 
 export const RecipePairings = () => {
     const { wineId } = useParams()

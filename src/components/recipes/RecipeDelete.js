@@ -1,6 +1,8 @@
 import { FaTrash } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import { deleteRecipe } from "../managers/RecipeManager"
+import React from 'react';
+
 
 export const RecipeDelete = ({ recipeId }) => {
     const navigate = useNavigate()

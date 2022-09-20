@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { getIngredients } from "../managers/MainIngredientManager"
 import { getVarietals } from "../managers/VarietalManager"
 import { getSingleWine, updateWine } from "../managers/WineManager"
+import React from 'react';
+
 
 export const WineEdit = () => {
     const [mainIngredients, setMainIngredient] = useState([])
@@ -26,9 +28,9 @@ export const WineEdit = () => {
         getVarietals().then(data => setVarietals(data))
     }, [])
 
-    return (
-        <form className="wineForm">
-            <h2 className="wineForm__title">Edit Wine</h2>
+    return (<section className="form_section">
+        <form className="form">
+            <h2 className="title">Edit Wine</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="vintner">Vintner: </label>
@@ -128,5 +130,6 @@ export const WineEdit = () => {
             <button type="cancel"
                 onClick={() => navigate(`/wines`)}>Cancel</button>
         </form>
+    </section>
     )
 }
