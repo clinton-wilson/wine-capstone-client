@@ -1,43 +1,50 @@
 import { Link, useNavigate } from "react-router-dom"
 import React from 'react';
-
+import "./NavBar.css"
 
 export const NavBar = () => {
     const navigate = useNavigate()
     return (
-        <ul className="navbar has-shadow is-primary">
-            <div className="navbar-brand">
-                <div className="navbar-menu">
-                    <li className="navbar-item">
-                        <Link to="/wines">Wines</Link>
+        <nav className="navbar">
+            <ul className="nav-links">
+                <div className="menu">
+                    <li className="nav_wines">
+                        <a href="/wines">Wines</a>
+                        <ul className="dropdown">
+                            <li><a href="/wines">Wine List</a></li>
+                            <li><a href="/wines">Favorites</a></li>
+                        </ul>
                     </li>
-                    <li className="navbar-item">
-                        <Link to="/recipes">Recipes</Link>
+                    <li >
+                        <a href="/recipes">Recipes</a>
                     </li>
-                    <li className="navbar-item">
-                        Navigation link
+                    <li className="nav_wines">
+                        <a href="/">Admin</a>
+                        <ul className="dropdown">
+                            <li><a href="/admin">Users</a></li>
+                        </ul>
                     </li>
+                    {
+                        (localStorage.getItem("wine_token") !== null) ?
+                            <li className="nav-item">
+                                <button className="nav-link fakeLink"
+                                    onClick={() => {
+                                        localStorage.removeItem("wine_token")
+                                        navigate('/login')
+                                    }}
+                                >Logout</button>
+                            </li> :
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">Login</Link>
+                                </li>
+                                <li className="">
+                                    <Link className="nav-link" to="/register">Register</Link>
+                                </li>
+                            </>
+                    }
                 </div>
-            </div>
-            {
-                (localStorage.getItem("wine_token") !== null) ?
-                    <div className="navbar-end">
-                        <li className="navbar-item">
-                            <button className="nav-link fakeLink"
-                                onClick={() => {
-                                    localStorage.removeItem("wine_token")
-                                    navigate('/login')
-                                }}
-                            >Logout</button>
-                        </li></div> :
-                    <>
-                        <li className="navbar-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="navbar-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                    </>
-            }       </ul>
+            </ul>
+        </nav>
     )
 }

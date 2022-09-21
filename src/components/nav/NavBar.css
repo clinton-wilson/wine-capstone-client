@@ -1,10 +1,136 @@
-/* .navbar {
+/* NAVBAR STYLING STARTS */
+.navbar {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: left;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #6b0000;
+    color: #fff;
 }
 
-.navbar__item {
-    flex-basis: 20%;
+.nav-links a {
+    color: #fff;
+}
+
+/* NAVBAR MENU */
+.menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+}
+
+.menu li:hover {
+    background-color: #a10000;
+    border-radius: 3px;
+    transition: 0.4s ease;
+}
+
+.menu li {
+    padding: 5px;
+}
+
+/* DROPDOWN MENU */
+.nav_wines {
+    position: relative;
+}
+
+.dropdown {
+    background-color: #6b0000;
+    padding: 1em 0;
+    position: absolute;
+    /*WITH RESPECT TO PARENT*/
+    display: none;
+    border-radius: 8px;
+    top: 35px;
+}
+
+.dropdown li+li {
+    margin-top: 10px;
+}
+
+.dropdown li {
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+}
+
+.dropdown li:hover {
+    background-color: #a10000;
+}
+
+.nav_wines:hover .dropdown {
+    display: block;
+}
+
+/*RESPONSIVE NAVBAR MENU STARTS*/
+/* CHECKBOX HACK */
+input[type=checkbox] {
+    /* display: none; */
+}
+
+/*HAMBURGER MENU*/
+.hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+}
+
+/* APPLYING MEDIA QUERIES */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+        position: absolute;
+        background-color: teal;
+        right: 0;
+        left: 0;
+        text-align: center;
+        padding: 16px 0;
+    }
+
+    .menu li:hover {
+        display: inline-block;
+        background-color: #4c9e9e;
+        transition: 0.3s ease;
+    }
+
+    .menu li+li {
+        margin-top: 12px;
+    }
+
+    input[type=checkbox]:checked~.menu {
+        display: block;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .dropdown {
+        left: 50%;
+        top: 30px;
+        transform: translateX(35%);
+    }
+
+    .dropdown li:hover {
+        background-color: #4c9e9e;
+    }
+}
+
+.fakeLink {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none!important;
+    border: none;
+    cursor: pointer;
+}
+
+.fakeLink:hover {
+    font-weight: bold;
+}
+
+.nav-item {
+    display: flex;
     list-style-type: none;
-} */
+    float: right;
+}

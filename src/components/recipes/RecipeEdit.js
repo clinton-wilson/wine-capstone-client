@@ -26,7 +26,7 @@ export const RecipeEdit = () => {
 
     return (<section className="form_section">
         <form className="form">
-            <h2 className="title">Edit Recipe</h2>
+            <h2 className="form_title">Edit Recipe</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Name: </label>
@@ -145,6 +145,7 @@ export const RecipeEdit = () => {
                 <div className="form-group">
                     <label htmlFor="main_ingredient">Main ingredient: </label>
                     <select name="main_ingredient"
+                    className="form-control"
                         proptype="int"
                         value={parseInt(editRecipe.main_ingredient)}
                         onChange={(e) => {
