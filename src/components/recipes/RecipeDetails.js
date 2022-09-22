@@ -5,6 +5,7 @@ import { deleteRecipe, getSingleRecipe } from "../managers/RecipeManager"
 import { getWines } from "../managers/WineManager"
 import { RecipeDelete } from "./RecipeDelete"
 import React from 'react';
+import { AdminAddIngredient } from "../admin/adminAddIngredient"
 
 
 export const RecipeDetails = () => {
@@ -60,7 +61,9 @@ export const RecipeDetails = () => {
             <br /><div className="detail_icons">
             {
                 (wineUserAdmin === true)
-                    ? <p className="detail_icon"><Link to={`/recipes/edit/${recipe.id}`}><FaEdit /></Link>
+                    ? <p className="detail_icon"><Link to={`/recipes/edit/${recipe.id}`}>
+                        <AdminAddIngredient recipeId={recipe.id}/>
+                        <FaEdit /></Link>
                         <RecipeDelete recipeId={recipe.id} /></p>
                     : ""
             }</div>

@@ -49,43 +49,44 @@ export const WineList = () => {
                     wines.map(wine => {
                         return <div key={`wine--${wine.id}`}
                             className="list_item">
-                                <Link to={`/wines/${wine.id}`}>
-                                    <div className="card">
-                                        <div className="list_image"><img src={wine.photo} alt={wine.vintner} /></div>
-                                        <div className="list_content">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</div>
-                                    </div></Link>
+                            <Link to={`/wines/${wine.id}`}>
+                                <div className="card">
+                                    <div className="list_image"><img src={wine.photo} alt={wine.description} /></div>
+                                    <div className="list_content">{wine.title}</div>
+                                </div></Link>
 
-                                <div className="list_icons">
-                                    {
-                                        wine?.favorited ?
-                                            <p className="list_icon">
-                                                <FaHeart color="red" className="m-1" onClick={() => {
-                                                    unfavoriteWine(wine.id)
-                                                        .then(() => {
-                                                            Wines()
-                                                        })
-                                                }} />Unlike</p>
-                                            :
-                                            <p className="list_icon">
+                            <div className="list_icons">
+                                {
+                                    wine?.favorited ?
+                                        <p className="list_icon">
+                                            <FaHeart color="red" className="m-1" onClick={() => {
+                                                unfavoriteWine(wine.id)
+                                                    .then(() => {
+                                                        Wines()
+                                                    })
+                                            }} />Unlike</p>
+                                        :
+                                        <p className="list_icon">
 
-                                                <FaHeart color="grey" className="m-1" onClick={() => {
-                                                    favoriteWine(wine.id)
-                                                        .then(() => {
-                                                            Wines()
-                                                        })
-                                                }} />Like</p>
-                                    }
-                                    {
-                                        (wineUserAdmin === true)
-                                            ? <>                                        <p className="list_icon">
+                                            <FaHeart color="grey" className="m-1" onClick={() => {
+                                                favoriteWine(wine.id)
+                                                    .then(() => {
+                                                        Wines()
+                                                    })
+                                            }} />Like</p>
+                                }
+                                {
+                                    (wineUserAdmin === true)
+                                        ? <>
+                                            <p className="list_icon">
                                                 <Link to={`/wines/edit/${wine.id}`}><FaEdit />Edit</Link></p>
-                                                <p className="list_icon">
-                                                    <span className="" onClick={() => {
-                                                        confirmDelete(wine.id)
-                                                    }}><FaTrash className="" />Delete</span></p></>
-                                            : ""
-                                    }
-                                </div>
+                                            <p className="list_icon">
+                                                <span className="" onClick={() => {
+                                                    confirmDelete(wine.id)
+                                                }}><FaTrash className="" />Delete</span></p></>
+                                        : ""
+                                }
+                            </div>
                         </div>
                     })
                 }

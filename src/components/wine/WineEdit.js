@@ -18,8 +18,8 @@ export const WineEdit = () => {
 
     useEffect(() => {
         getSingleWine(wineId).then(data => {
-            data.main_ingredient = data.main_ingredient.id
-            data.varietal = data.varietal.id
+            // data.main_ingredient = data.main_ingredient.id
+            // data.varietal = data.varietal.id
             setEditWine(data)
         })
     }, [])
@@ -33,13 +33,13 @@ export const WineEdit = () => {
             <h2 className="title">Edit Wine</h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="vintner">Vintner: </label>
-                    <input type="text" name="vintner" required autoFocus
+                    <label htmlFor="title">Title: </label>
+                    <input type="text" name="title" required autoFocus
                         className="form-control"
-                        value={editWine.vintner}
+                        value={editWine.title}
                         onChange={(e) => {
                             const copy = { ...editWine }
-                            copy.vintner = e.target.value
+                            copy.title = e.target.value
                             setEditWine(copy)
                         }}
                     />
@@ -47,12 +47,26 @@ export const WineEdit = () => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="vintage">Vintage: </label>
-                    <input type="number" min="1900" max="2022" name="vintage" className="form-control"
-                        value={editWine.vintage}
+                    <label htmlFor="description">Description: </label>
+                    <textarea type="text" name="description" required autoFocus
+                        className="form-control"
+                        value={editWine.description}
                         onChange={(e) => {
                             const copy = { ...editWine }
-                            copy.vintage = e.target.value
+                            copy.description = e.target.value
+                            setEditWine(copy)
+                        }}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="price">Price: </label>
+                    <input type="text" name="price" className="form-control"
+                        value={editWine.price}
+                        onChange={(e) => {
+                            const copy = { ...editWine }
+                            copy.price = e.target.value
                             setEditWine(copy)
                         }} />
                 </div>
@@ -115,8 +129,9 @@ export const WineEdit = () => {
 
                     const wine = {
                         id: wineId,
-                        vintner: editWine.vintner,
-                        vintage: editWine.vintage,
+                        title: editWine.title,
+                        price: editWine.price,
+                        description: editWine.description,
                         varietal: parseInt(editWine.varietal),
                         photo: editWine.photo,
                         submitted_by: editWine.submitted_by,

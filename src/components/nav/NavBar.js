@@ -21,7 +21,8 @@ export const NavBar = () => {
                     <li className="nav_wines">
                         <a href="/">Admin</a>
                         <ul className="dropdown">
-                            <li><a href="/admin">Users</a></li>
+                            <li><a href="/admin/users">Users</a></li>
+                            <li><a href="/admin/ingredients">Ingredients</a></li>
                         </ul>
                     </li>
                     {

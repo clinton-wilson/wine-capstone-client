@@ -35,3 +35,23 @@ export const deleteRecipe = (recipeId) => {
         }
     }).then(getRecipes)
 }
+
+export const addIngredient = id => {
+    return fetch(`http://localhost:8000/recipes/${id}/add_ingredient`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
+export const removeIngredient = id => {
+    return fetch(`http://localhost:8000/recipes/${id}/remove_ingredient`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("wine_token")}`
+        }
+    })
+        .then(getRecipes)
+}

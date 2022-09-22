@@ -13,7 +13,7 @@ export const IsAdmin = ({ userId }) => {
     }, [])
 
     return (
-        <section>
+        <section className="section">
             <form>
                 <fieldset>
                     <div>{user.admin}</div>

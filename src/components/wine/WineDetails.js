@@ -23,9 +23,11 @@ export const WineDetails = () => {
     }, [])
 
     return (<section className="detail_container">
-        <h2 className="title">{wine.vintner} {wine.vintage} {wine?.varietal?.varietal}</h2>
+        <h2 className="title">{wine.title}</h2>
         <article className="details">
             <div className="detail_image"><img src={wine.photo} alt={wine.vintner} /></div>
+            <div className="detail">{wine.description}</div>
+            <div className="detail">Price: {wine.price}</div>
             <div className="detail">Pairing main ingredients: <Link to={`/pairings/${wine.id}`}>{wine?.main_ingredient?.ingredient}</Link></div>
             <div className="detail_icons">
             {

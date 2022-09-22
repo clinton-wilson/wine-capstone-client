@@ -7,24 +7,27 @@ export const AdminUserEdit = () => {
 
     const Users = () => {
         getUsers()
-        .then(setUsers)
+            .then(setUsers)
     }
 
     useEffect(() => {
         Users()
     }, [])
 
-    return(
-        <section>
-            {
-                users.map(user => {
-                    return <div>
-                        <div>Name: {user.user.first_name} {user.user.last_name}</div>
-                        <div>Username: {user.user.username}</div>
-                        <div><IsAdmin userId={user.id}/></div>
+    return (
+        <section className="section">
+            <h2 className="title">Users</h2>
+            <div className="list_container">
+                {
+                    users.map(user => {
+                        return <div className="list_item">
+                            <div>Name: {user.user.first_name} {user.user.last_name}</div>
+                            <div>Username: {user.user.username}</div>
+                            <div><IsAdmin userId={user.id} /></div>
                         </div>
-                })
-            }
+                    })
+                }
+            </div>
         </section>
     )
 }
